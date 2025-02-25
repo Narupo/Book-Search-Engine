@@ -13,7 +13,7 @@ import { typeDefs, resolvers } from './schemas';
 // Import authentication
 import { authenticateToken } from './services/auth';
 
-// ✅ Initialize Apollo Server
+// Initialize Apollo Server
 const server = new ApolloServer({
   typeDefs,
   resolvers,

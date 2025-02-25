@@ -1,6 +1,6 @@
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import { QUERY_ME } from '../utils/queries';
 import { REMOVE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
@@ -17,7 +17,7 @@ interface SavedBook {
 
 const SavedBooks = () => {
   // Fetch user data using Apollo's `useQuery`
-  const { loading, data } = useQuery(GET_ME);
+  const { loading, data } = useQuery(QUERY_ME);
   const userData = data?.me || { savedBooks: [] };
 
   // Use Apollo's `useMutation` to remove books
@@ -30,12 +30,12 @@ const SavedBooks = () => {
       await removeBook({
         variables: { bookId },
         update: (cache) => {
-          const existingData = cache.readQuery<{ me: { savedBooks: SavedBook[] } }>({ query: GET_ME });
+          const existingData = cache.readQuery<{ me: { savedBooks: SavedBook[] } }>({ query: QUERY_ME });
 
           if (existingData && existingData.me) {
             const updatedBooks = existingData.me.savedBooks.filter((book) => book.bookId !== bookId);
             cache.writeQuery({
-              query: GET_ME,
+              query: QUERY_ME,
               data: { me: { ...existingData.me, savedBooks: updatedBooks } },
             });
           }
