@@ -13,7 +13,7 @@ interface UserPayload {
   email: string;
 }
 
-// ✅ GraphQL-friendly authentication function
+// GraphQL-friendly authentication function
 export const authenticateToken = ({ req }: { req: any }) => {
   let token = req.body.token || req.query.token || req.headers.authorization;
 
@@ -35,13 +35,13 @@ export const authenticateToken = ({ req }: { req: any }) => {
   return req;
 };
 
-// ✅ Signs a JWT with user details
+// Signs a JWT with user details
 export const signToken = (username: string, email: string, _id: string): string => {
   const payload = { username, email, _id };
   return jwt.sign({ data: payload }, SECRET_KEY, { expiresIn: EXPIRATION });
 };
 
-// ✅ Custom Authentication Error for GraphQL
+// Custom Authentication Error for GraphQL
 export class AuthenticationError extends GraphQLError {
   constructor(message: string) {
     super(message, {
