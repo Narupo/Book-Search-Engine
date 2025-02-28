@@ -16,7 +16,7 @@ interface UserPayload {
 // GraphQL-friendly authentication function
 export const authenticateToken = ({ req }: { req: any }) => {
   let token = req.body.token || req.query.token || req.headers.authorization;
-
+ // console.log("Token: ", token);
   if (req.headers.authorization) {
     token = token.split(' ').pop().trim();
   }
