@@ -1,7 +1,7 @@
 import { GraphQLError } from 'graphql';
 import { Request } from 'express';
-import User from '../models/User';
-import { signToken } from '../services/auth';
+import User from '../models/User.js';
+import { signToken } from '../services/auth.js';
 
 // Define GraphQL context type
 interface GraphQLContext {
@@ -57,6 +57,7 @@ const resolvers = {
       }
       // Pass correct arguments to signToken
       const token = signToken(user.username, user.email, user.id);
+      // console.log("Creating Token: ", token);
       return { token, user };
     },
 
@@ -64,10 +65,12 @@ const resolvers = {
       const user = await User.create({ username, email, password });
       // Pass correct arguments to signToken
       const token = signToken(user.username, user.email, user.id);
+      // console.log("Creating Token: ", token);
       return { token, user };
     },
 
     saveBook: async (_parent: unknown, { input }: SaveBookArgs, context: GraphQLContext) => {
+      // console.log("Context: ", context.user);
       if (!context.user) {
         throw new GraphQLError('You need to be logged in!', {
           extensions: { code: 'UNAUTHENTICATED' },

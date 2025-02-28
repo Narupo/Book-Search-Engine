@@ -1,9 +1,9 @@
 import { Container, Card, Button, Row, Col } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_ME } from '../utils/queries';
-import { REMOVE_BOOK } from '../utils/mutations';
-import Auth from '../utils/auth';
-import { removeBookId } from '../utils/localStorage';
+import { QUERY_ME } from '../utils/queries.js';
+import { REMOVE_BOOK } from '../utils/mutations.js';
+import Auth from '../utils/auth.js';
+import { removeBookId } from '../utils/localStorage.js';
 
 // Define a TypeScript interface for a saved book
 interface SavedBook {

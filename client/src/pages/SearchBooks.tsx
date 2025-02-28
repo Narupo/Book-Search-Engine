@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Container, Col, Form, Button, Card, Row } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
-import { SAVE_BOOK } from '../utils/mutations';
-import Auth from '../utils/auth';
-import { searchGoogleBooks } from '../utils/API';
-import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
+import { SAVE_BOOK } from '../utils/mutations.js';
+import Auth from '../utils/auth.js';
+import { searchGoogleBooks } from '../utils/API.js';
+import { saveBookIds, getSavedBookIds } from '../utils/localStorage.js';
 
 const SearchBooks = () => {
   const [searchInput, setSearchInput] = useState('');

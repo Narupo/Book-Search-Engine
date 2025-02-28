@@ -1,16 +1,16 @@
 import express from 'express';
 import path from 'node:path';
-import db from './config/connection'; // ✅ Ensure the correct import
+import db from './config/connection.js'; // ✅ Ensure the correct import
 
 // Import Apollo Server (Apollo v4)
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 
 // Import authentication
-import { authenticateToken } from './services/auth';
+import { authenticateToken } from './services/auth.js';
 
 // Import GraphQL schema
-import { typeDefs, resolvers } from './schemas';
+import { typeDefs, resolvers } from './schemas/index.js';
 
 // Initialize Apollo Server
 const server = new ApolloServer({
@@ -42,10 +42,10 @@ const startApolloServer = async () => {
 
   // Serve static assets in production
   if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.use(express.static(path.join(__dirname, '../client/dist')));
 
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../client/build/index.html'));
+      res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
   }
 
