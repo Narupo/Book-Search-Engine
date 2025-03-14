@@ -1,13 +1,13 @@
 import { Schema, model, Document } from 'mongoose';
 import bcrypt from 'bcrypt';
-import bookSchema from './Book.js';
+import {BookDocument, bookSchema} from './Book.js';
 
 export interface UserDocument extends Document {
   id: string;
   username: string;
   email: string;
   password: string;
-  savedBooks: Schema.Types.ObjectId[];
+  savedBooks: BookDocument[];
   isCorrectPassword(password: string): Promise<boolean>;
   bookCount: number;
 }
