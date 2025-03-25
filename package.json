@@ -12,11 +12,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^8.2.0"
-  },
   "dependencies": {
     "@apollo/client": "^3.13.1",
-    "@vitejs/plugin-react": "^4.2.1"
+    "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.0"
   }
 }
